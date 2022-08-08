@@ -1,6 +1,9 @@
 package com.example.task.domain.animal;
 
+import com.example.task.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,7 +14,16 @@ import java.io.Serializable;
 @Table(name = "animal")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Animal implements Serializable {
+
+    public Animal(String name, String birthdate, TypeAnimal typeAnimal, GenderAnimal gender, User user) {
+        this.name = name;
+        this.birthdate = birthdate;
+        this.typeAnimal = typeAnimal;
+        this.gender = gender;
+        this.user = user;
+    }
 
     @Serial
     private static final long serialVersionUID = -5449326074498337967L;
@@ -24,11 +36,15 @@ public class Animal implements Serializable {
     private String name;
     private String birthdate;
 
-    @ManyToOne
-    @JoinColumn(name = "type_animal_id")
+    @Enumerated(value = EnumType.STRING)
     private TypeAnimal typeAnimal;
 
     @Enumerated(value = EnumType.STRING)
     private GenderAnimal gender;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usr")
+    @JsonIgnore
+    private User user;
 
 }

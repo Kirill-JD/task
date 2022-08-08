@@ -27,6 +27,7 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model, HttpServletRequest request) {
+        String username = user.getUsername();
         String userPassword = user.getPassword();
 
         if (!userService.addUser(user)) {
@@ -34,7 +35,7 @@ public class RegistrationController {
             return "registration";
         }
         try {
-            request.login(user.getUsername(), userPassword);
+            request.login(username, userPassword);
         } catch (ServletException e) {
             LOGGER.error("Error while login ", e);
         }
