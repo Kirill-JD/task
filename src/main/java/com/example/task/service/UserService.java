@@ -18,7 +18,6 @@ public class UserService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final FindByUsernameInbound findByUsernameInbound;
     private final SaveUserInbound addUserInbound;
-    private final HttpServletRequest request;
     private final LoginAttemptService loginAttemptService;
 
     @Override

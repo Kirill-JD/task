@@ -10,7 +10,6 @@ import java.util.List;
 public interface AnimalJpaRepository extends JpaRepository<Animal, Long> {
 
     Animal findById(long id);
-    Animal findByName(String name);
 
     @Query(value = "SELECT * FROM animal WHERE usr = :id",
             nativeQuery = true)

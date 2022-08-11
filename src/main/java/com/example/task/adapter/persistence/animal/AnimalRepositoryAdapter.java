@@ -32,4 +32,10 @@ public class AnimalRepositoryAdapter implements AnimalRepository {
     public void save(Animal animal) {
         animalJpaRepository.save(animal);
     }
+
+    @Override
+    public List<Animal> findAll() {
+        return animalJpaRepository.findAll();
+    }
+
 }

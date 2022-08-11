@@ -13,4 +13,5 @@ public interface AnimalRepository {
     void delete(Animal animal);
 
     void save(Animal animal);
+    List<Animal> findAll();
 }

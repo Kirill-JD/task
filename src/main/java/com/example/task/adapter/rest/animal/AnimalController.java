@@ -1,9 +1,7 @@
 package com.example.task.adapter.rest.animal;
 
-import com.example.task.app.api.animal.DeleteAnimalInbound;
-import com.example.task.app.api.animal.FindByIdAnimalInbound;
-import com.example.task.app.api.animal.GetListAnimalsByUserIdInbound;
-import com.example.task.app.api.animal.SaveAnimalInbound;
+import com.example.task.adapter.persistence.animal.AnimalJpaRepository;
+import com.example.task.app.api.animal.*;
 import com.example.task.domain.animal.Animal;
 import com.example.task.domain.user.User;
 import lombok.RequiredArgsConstructor;
@@ -14,17 +12,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("animal")
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("api")
 @RequiredArgsConstructor
 public class AnimalController {
     private final GetListAnimalsByUserIdInbound getListAnimalsInbound;
     private final SaveAnimalInbound saveAnimalInbound;
     private final FindByIdAnimalInbound findByIdAnimalInbound;
     private final DeleteAnimalInbound deleteAnimalInbound;
+    private final AnimalRepository animalRepository;
 
     @GetMapping
-    public List<Animal> list(@AuthenticationPrincipal User user) {
-        return getListAnimalsInbound.execute(user.getId());
+    public List<Animal> list() { //@AuthenticationPrincipal User user
+        return animalRepository.findAll();
+        //return getListAnimalsInbound.execute(user.getId());
     }
 
     @GetMapping("{id}")
