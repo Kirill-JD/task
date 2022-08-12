@@ -5,7 +5,6 @@ import com.example.task.app.api.user.UserRepository;
 import com.example.task.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
@@ -13,7 +12,6 @@ public class FindByUsernameUseCase implements FindByUsernameInbound {
 
     private final UserRepository userRepository;
 
-    @Transactional(readOnly = true)
     @Override
     public User execute(String username) {
         return userRepository.findByUsername(username);

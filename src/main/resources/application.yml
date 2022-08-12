@@ -9,3 +9,8 @@ spring:
   h2:
     console:
       enabled: true
+
+jwt:
+  token:
+    secret: taskbackend
+    expired: 3600000
