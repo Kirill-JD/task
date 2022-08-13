@@ -43,7 +43,7 @@ public class Animal implements Serializable {
     private GenderAnimal gender;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usr")
+    @JoinColumn(name = "users")
     @JsonIgnore
     private User user;
 

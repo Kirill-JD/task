@@ -3,7 +3,6 @@ package com.example.task.config.security;
 import com.example.task.app.impl.security.jwt.JwtConfigurer;
 import com.example.task.app.impl.security.jwt.JwtTokenProvider;
 import com.example.task.service.CustomAuthenticationFailureHandler;
-import com.example.task.service.UserService;
 import com.example.task.service.security.JwtUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                    .antMatchers("/api/login").permitAll()
+                    .antMatchers("/api/login", "/api/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider));

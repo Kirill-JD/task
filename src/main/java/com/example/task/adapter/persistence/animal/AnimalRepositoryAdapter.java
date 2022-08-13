@@ -19,6 +19,11 @@ public class AnimalRepositoryAdapter implements AnimalRepository {
     }
 
     @Override
+    public Animal findByName(String name) {
+        return animalJpaRepository.findByName(name);
+    }
+
+    @Override
     public List<Animal> getListAnimalsByUserIdName(long id) {
         return animalJpaRepository.getListAnimalsByUserIdName(id);
     }

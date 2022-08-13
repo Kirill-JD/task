@@ -8,6 +8,8 @@ public interface AnimalRepository {
 
     Animal findById(long id);
 
+    Animal findByName(String name);
+
     List<Animal> getListAnimalsByUserIdName(long id);
 
     void delete(Animal animal);
